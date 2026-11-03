@@ -1,0 +1,27 @@
+name: Deploy Dist to AWS S3 via OIDC
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write   # Required for requesting the OIDC JWT
+  contents: read    # Required for actions/checkout
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: us-east-1
+
+      - name: Sync dist folder to S3
+        run: |
+          aws s3 sync ./dist s3://${{ secrets.AWS_BUCKET_NAME }} --delete
