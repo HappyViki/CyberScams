@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberScams</title>
+    <style>
+        :root {
+            --dark: #080b18;
+            --red: #980E34;
+            --green: #0E982C;
+            --blue: #0E7A98;
+        }
+        body{
+            color: #fff;
+            background-color: var(--dark);
+            font-family: 'Courier New', Courier, monospace;
+        }
+        h1{
+            margin: 0;
+            margin-top: 24px;
+        }
+        .container, #reporterForm, .form-control{
+            display: flex;
+            flex-direction: column;
+        }
+        .container{
+            max-width: 500px;
+            margin: auto;
+            gap: 24px;
+        }
+        #reporterForm, #searchContainer{
+            background: var(--red);
+            padding: 24px;
+            gap: 8px;
+        }
+        #reporterForm h2{
+            margin: 0;
+        }
+        .submit-button{
+            background-color: var(--blue);
+            color: #fff;
+            border: none;
+            padding: 8px;
+            font-size: 1.5rem;
+        }
+        .submit-button:hover{
+            cursor: pointer;
+            background-color: var(--green);
+        }
+        .scam-card, #searchForm{
+            border-bottom: 2px solid #fff;
+            padding-bottom: 8px;
+        }
+        .scam-desc{
+            font-style: italic;
+        }
+        .scam-item__label{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CyberScam</h1>
+
+        <form id="reporterForm">
+            <h2>Report It!</h2>
+
+            <div class="form-control">
+                <label for="scamDesc">Description</label>
+                <textarea name="scamDesc" id="scamDesc" rows="10"></textarea>
+            </div>
+            <div class="form-control">
+                <label for="scamTel">Phone</label>
+                <input type="tel" name="scamTel" id="scamTel">
+            </div>
+            <div class="form-control">
+                <label for="scamEmail">Email</label>
+                <input type="email" name="scamEmail" id="scamEmail">
+            </div>
+            <div class="form-control">
+                <label for="scamSite">Website</label>
+                <input type="text" name="scamSite" id="scamSite">
+            </div>
+            <button class="submit-button">Submit</button>
+        </form>
+
+        <div id="searchContainer">
+            <form id="searchForm">
+                <div class="form-control search-bar">
+                    <label for="searchBar">Search</label>
+                    <input type="search" name="searchBar" id="searchBar">
+                </div>
+            </form>
+            <div id="scamList"></div>
+        </div>
+    </div>
+
+    <script src="dummyData.js"></script>
+    <script src="Card.js"></script>
+    <script>
+        for (scam of scams) {
+            scamList.innerHTML += Card(scam)
+        }
+    </script>
+</body>
+</html>
