@@ -1,0 +1,3 @@
+# CyberScams
+
+Simple scam reporter.
